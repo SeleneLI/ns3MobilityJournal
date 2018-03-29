@@ -1,0 +1,27 @@
+% -< SECTION
+% >--------------------------------------------------------------------
+\section{Conclusion and future work}\label{sec:conclusion}
+As a promising technology for the future Internet architecture, LISP attracts
+more and more attention \ed{BD: ref?}. There exist some LISP implementations,
+but they do not support LISP-MN or they are proprietary. Further, although measurements on
+LISP-testbeds can provide real time performance, due to the complicated
+topological structure, it is somewhat like a black box test which hinders us to
+find the exact explanation for some results. This highlights the importance to
+have an open source simulator for LISP in particular to support LISP-MN
+functionality. In this paper, we present our implementation for LISP/LISP-MN
+within ns-3, since the latter is a largely accepted simulator in networking
+research. The simulation results show that our implementation works well, and
+reveal the current LISP-MN proposal with a double encapsulation that has an high
+level delay during handover procedure. Our simulator can be a perfect choice to
+test the improvements of LISP-MN. 
+
+There are two possible directions to support IP mobility in LISP: host-based
+(i.e. LISP-MN) and network-based (i.e., xTR) mobility. We can compare the
+performance between LISP double encapsulation described in this paper with only
+host supporting LISP and only router supporting LISP leveraging our proposed
+simulator. As Map-Versioning~\cite{rfc6834} is another Mapping Cache update
+mechanism, we can also compare the performance between it and SMR that we
+present in this paper by our simulator.
+
+\ed{BD: this is a (very) short paper. I would suggest to shorten the conclusion}
+

@@ -1,0 +1,55 @@
+%-< SECTION >--------------------------------------------------------------------
+\section{Introduction}\label{sec:intro}
+
+The \dfn{Locator/Identifier Separation Protocol} (LISP)~\cite{rfc6830} is
+initially proposed to solve the scalability and flexibility issues of current
+Internet architecture, since it decouples the \dfn{Routing Locators} (RLOCs,
+i.e., an attachment point in the Internet topology) and \dfn{Endpoint
+Identifiers} (EIDs, i.e., a communicating end-point). This allows the BGP
+routing tables in the Internet core to only announce the globally routable RLOCs
+whereas EIDs are only locally used within the LISP-sites. LISP is under
+standardization at the IETF for about ten years and, with time, more and more
+advantages are found such as: seamless mobility at terminal or in the Data
+Center~\cite{saucez2016locator}, IPv6 transition and traffic
+engineering~\cite{saucez2012designing}. In particular, the continuous
+communication without interruption during the handover of terminals becomes a
+hot topic recently~\cite{phoomikiattisak2016control}.
+
+To test the various features of LISP, two LISP testbeds are built: LISP Beta
+Network~\cite{lispbeta} and LISP-Lab platform~\cite{lisplab}. Unfortunately, both of
+them only implement the basic LISP architecture and do not support mobility
+functionality. Some platform-specific LISP implementations, such as
+OpenLISP~\cite{phung2014openlisp}, Open Overlay Router (OOR)~\cite{LISPmob}, and
+Cisco's implementation~\cite{CiscoIOS}, can provide realistic LISP evaluations
+but lack the required flexibility for testing new and advanced LISP features.
+% Further, a simulating environment for LISP would be valuable for researches as it would allow them to test, in a controlled and reproducible environment, the tomorrow LISP.
+Thus, a simulating environment for LISP would be necessary and valuable for researches to improve LISP.
+\ed{BD: better but should probably be rewritten a little bit.}\yue{Modified, better?} On
+one hand, LISP has already been implemented in
+ns-3~\cite{lezama2009implementation}, a widely used open-source simulator by
+academic researchers and educational.  However, this implementation does not
+support mobility.  On the other hand, LISP and mobility features are already
+implemented in OMNET++~\cite{klein2012integration}. However, the source code is
+not available online. To promote the development of LISP and as ns-3 gradually
+shows the potential to take the momentum in network simulator
+domain~\cite{rana2017implementation}, it highlights the importance to implement
+LISP and its mobility extensions under ns-3. % and motivates our work.  
+\ed{BD: last sentence unclear}\yue{Simplified, better?}
+
+In this paper, we introduce the implementation of basic LISP functions and
+mobility features on ns-3 by both modifying the existent ns-3 modules and
+integrating new ones. Our implementation is validated through a mobility
+scenario in which a terminal changes its attachment points while keeping the
+communication up with the remote node. All the handover procedures are
+transparent to the terminal.  However, the delay to receive the packets is high.
+
+\ed{BD: you mention that the Omnet implementation is not open-source.  What
+about yours?  If it is open-source,please provide a link in the paper to the
+repo.}
+
+The rest of the paper is organized as follows: Sec.~\ref{sec:lisp} reviews LISP
+architecture, highlighting the LISP mobility mechanism; Sec.~\ref{sec:sim_model}
+analyzes the design and implementation of our prototype, and afterwards,
+Sec.~\ref{sec:evaluation} presents preliminary evaluation results of our
+implementations. Sec.~\ref{sec:conclusion} concludes this paper by summarizing
+its main achievements and discussing potential future works.

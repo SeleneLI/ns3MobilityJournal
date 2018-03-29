@@ -1,0 +1,101 @@
+\documentclass[10pt, conference]{IEEEtran}
+%\documentclass[a4paper]{IEEEtran}
+\renewcommand\IEEEkeywordsname{Keywords}
+
+\ifCLASSINFOpdf
+
+\else
+
+\fi
+
+\usepackage{graphicx}             % import, scale, and rotate graphics
+\usepackage{subfigure}            % group figures
+\usepackage{url}                  % facilitate linebreaking of URLs
+\usepackage[T1]{fontenc}
+\usepackage{nicefrac}             % write fractions in the text
+\usepackage{indentfirst}          % indent the first paragraph
+\usepackage[super, negative]{nth}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{url}
+
+\usepackage[dvipsnames,usenames]{color}
+\usepackage{xspace}
+\usepackage{balance}
+
+\usepackage[latin1]{inputenc}     % use characters with accents in the source
+\usepackage{moreverb}
+\usepackage{amsmath}
+\usepackage{xspace}
+\usepackage{color}
+\usepackage{paralist}             % to add in paragraphe enumerate list
+\usepackage{booktabs}
+\newcommand{\ed}[1]{\textsf{\textbf{[#1]}}}  %editorial comments
+\newcommand{\dfn}[1]{\textit{#1}}            %introducing new terms
+\newcommand{\revision}[1]{\textsf{\textbf{#1}}}
+\newcommand{\co}[2]{#1 & \tiny{$\pm#2$}}     %intervalles de confiance
+
+\newcommand{\yue}[1]{\textcolor{blue}{(\textbf{[Yue] }\textit{#1}})}
+
+\graphicspath{{.}{./Pics/}}
+
+
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+
+\title{ns-3 Implementation of LISP and LISP-MN }
+
+\author{Yue Li{$^{\ast}$}, Luigi Iannone{$^{\ast}$}, Benoit Donnet{$^{\dag}$}\\
+$\ast$ Telecom ParisTech -- France\\
+$\dag$ Universit\'e de Li\`ege, Montefiore Institute -- Belgium
+}
+
+
+
+\maketitle
+\input{abstract.tex}
+  
+
+\begin{IEEEkeywords}
+	LISP, mobility, LISP-MN, ns-3, simulation.
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+
+\input{intro.tex}
+\input{overview.tex}
+\input{sim_model.tex}
+\input{evaluation.tex}
+\input{conclusion.tex}
+
+
+% use section* for acknowledgment
+\section*{Acknowledgment}
+Research work presented in this paper is supported by the French Research Agency
+under ANR-13-INFR-0009 LISP-Lab Project (www.lisp-lab.org) and benefited support
+from NewNet@Paris, Cisco's Chair "{\sc Networks for the Future}" at Telecom
+ParisTech (\url{http://newnet.telecom-paristech.fr}). Any opinions, findings or
+recommendations expressed in this material are those of the author(s) and do not
+necessarily reflect the views of partners of the Chair.     
+
+% \vspace{2mm}
+% \footnotesize{\emph{Acknowledgments:} Research work presented in this paper is supported by the French Research Agency under ANR-13-INFR-0009 LISP-Lab Project (www.lisp-lab.org) and benefited support from NewNet@Paris, Cisco's Chair "{\sc Networks for the Future}" at Telecom ParisTech (\url{http://newnet.telecom-paristech.fr}). Any opinions, findings or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of partners of the Chair.}
+
+
+{%\small
+\balance
+\bibliographystyle{ieeetr}
+\bibliography{Bibliography}
+}
+
+
+\end{document}
+
+

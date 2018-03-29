@@ -1,0 +1,64 @@
+%-< SECTION >--------------------------------------------------------------------
+\section{LISP Overview}\label{sec:lisp}
+
+
+%-< SUB SECTION >--------------------------------------------------------------------
+\subsection{Basic Architecture}\label{sec:archi}
+
+LISP splits the current IP addressing space into two sub-spaces. One called EID
+indicating the host identifier is locally used within a LISP-site. The other
+one, called RLOC, represents the attachment point in the topology, i.e., the
+border router, and is globally routable between LISP-sites on the Internet core.
+The binding between EID and RLOC is called \dfn{mapping information} and is
+stored in the \dfn{Mapping Distribution System} (MDS) consisting of \dfn{Map
+Resolver} (MR) and \dfn{Map Server} (MS)~\cite{rfc6833}. The border router is in
+charge of searching for the mapping information either in its own Cache or in
+the MDS.  It then encapsulates the conventional IP packets into LISP packets and
+forwards them out of the LISP-site on the Internet core.  This router is called
+\dfn{Ingress Tunnel Router} (ITR).  On the other hand, routers receiving the
+LISP packets and decapsulating them into traditional packets for the LISP-site
+behind them are named \dfn{Egress Tunnel Router} (ETR). One usually refers to
+both of them as \dfn{xTR}.
+
+
+%-< SUB SECTION >--------------------------------------------------------------------
+\subsection{LISP Mobile Node}\label{sec:lispMN}
+
+The LISP Mobile Node (LISP-MN) implements a lightweight version of the standard xTR
+functionality~\cite{mn14} supporting a node itself fast and seamless roaming% and being discovered in an efficient and scalable manner 
+\ed{BD: unclear}\yue{Better?}. It can directly interact
+with the MR to get the mapping information associated to the remote host, to which it communicates \ed{BD:
+which remote host?}\yue{Is it clear now?}.
+When a LISP-MN resides in a LISP-site, it is assigned an EID taken from the
+site's EID-prefix as its RLOC, called \emph{Local RLOC} (\emph{LRLOC}) \ed{BD: I
+think I understand the sentence but this is unclear}.
+Thus, LISP-MN stores not only its permanent unique EID but also the LRLOC
+and registers this mapping information to MS. The conventional IP packets
+produced by the LISP-MN are encapsulated on itself using the permanent EID as
+the inner source address and Local RLOC as the outer source address 
+The encapsulated LISP packets are forwarded to xTR and encapsulated again by the
+method of basic encapsulation of xTR. The procedure of packets being
+encapsulated two times are called \emph{double encapsulation}.  \ed{BD:
+this 1st encapsulation is unclear to me.  The EDI and LRLOC are used to
+forward the packet to the xTR.  Then, the xTR encapsulates towards the distant
+sites.  How this xTR knows the mapping of the distant site?  It is unclear
+from this paragraph}.
+
+%-< SUB SECTION >--------------------------------------------------------------------
+\subsection{Mapping Cache Update Mechanisms}\label{sec:updateMechanisms}
+
+When the ETRs change their LISP databases \ed{BD: never heard about the
+databases before}, the only way that remote ITR can get the updated mapping
+information is to re-request the mapping. Thus, Solicit-Map-Request (SMR) is
+proposed to get the latest mapping.  \ed{BD: the broken English here makes the
+sentence unclear.  SMR cannot be ``proposed''.}
+
+Soliciting a Map-Request is used by ETRs to tell remote ITRs to update the
+mappings they have cached in the Control Plane~\cite{rfc6830}. When the mappings
+in the Database of ETR change, the ETR sends the Map-Requests with the SMR bit
+set (called SMR message) for each RLOC in its Cache. A remote ITR that receives
+the SMR message will send a Map-Request to the MR. During the sending SMR
+message and receiving the new Map-Reply, the ITR continues to use the mapping
+information previously cached, and that may cause the packet loss.
+
+\ed{Bd: globally, this last subsection is unclear.}
